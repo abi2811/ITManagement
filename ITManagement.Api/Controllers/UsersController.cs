@@ -26,7 +26,6 @@ namespace ITManagement.Api.Controllers
             return Ok(user);
         }
 
-        // GET api/values/5
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]User request)
         {
