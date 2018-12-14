@@ -25,7 +25,6 @@
 7. Test POST with postman
     https://localhost:5001/api/users
 
-        http post:
             {
                 "username": "user1",
                 "email": "user1@email.com",
