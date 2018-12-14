@@ -1,0 +1,9 @@
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Core/bin/Debug/netstandard2.0/ITManagement.Core.deps.json
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Core/bin/Debug/netstandard2.0/ITManagement.Core.dll
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Core/bin/Debug/netstandard2.0/ITManagement.Core.pdb
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Core/obj/Debug/netstandard2.0/ITManagement.Core.csprojAssemblyReference.cache
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Core/obj/Debug/netstandard2.0/ITManagement.Core.csproj.CoreCompileInputs.cache
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Core/obj/Debug/netstandard2.0/ITManagement.Core.AssemblyInfoInputs.cache
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Core/obj/Debug/netstandard2.0/ITManagement.Core.AssemblyInfo.cs
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Core/obj/Debug/netstandard2.0/ITManagement.Core.dll
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Core/obj/Debug/netstandard2.0/ITManagement.Core.pdb

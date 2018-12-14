@@ -1,0 +1,12 @@
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Infrastructure/bin/Debug/netstandard2.0/ITManagement.Infrastructure.deps.json
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Infrastructure/bin/Debug/netstandard2.0/ITManagement.Infrastructure.dll
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Infrastructure/bin/Debug/netstandard2.0/ITManagement.Infrastructure.pdb
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Infrastructure/bin/Debug/netstandard2.0/ITManagement.Core.dll
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Infrastructure/bin/Debug/netstandard2.0/ITManagement.Core.pdb
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Infrastructure/obj/Debug/netstandard2.0/ITManagement.Infrastructure.csprojAssemblyReference.cache
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Infrastructure/obj/Debug/netstandard2.0/ITManagement.Infrastructure.csproj.CoreCompileInputs.cache
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Infrastructure/obj/Debug/netstandard2.0/ITManagement.Infrastructure.AssemblyInfoInputs.cache
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Infrastructure/obj/Debug/netstandard2.0/ITManagement.Infrastructure.AssemblyInfo.cs
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Infrastructure/obj/Debug/netstandard2.0/ITManagement.Infrastructure.csproj.CopyComplete
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Infrastructure/obj/Debug/netstandard2.0/ITManagement.Infrastructure.dll
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Infrastructure/obj/Debug/netstandard2.0/ITManagement.Infrastructure.pdb
