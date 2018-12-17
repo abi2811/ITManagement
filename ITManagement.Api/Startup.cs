@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ITManagement.Api.Repository;
+using ITManagement.Core.Repository;
 using ITManagement.Infrastructure.Data;
+using ITManagement.Infrastructure.Repository;
 using ITManagement.Infrastructure.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,6 +32,15 @@ namespace ITManagement.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IClientService, ClientService>();
+            services.AddScoped<IDepartamentService, DepartamentService>();
+            services.AddScoped<IDeviceService, DeviceService>();
+            services.AddScoped<IDeviceTypeService, DeviceTypeService>();
+            services.AddScoped<IClientRepository, ClientRepository>();
+            services.AddScoped<IDepartamentRepository, DepartamentRepository>();
+            services.AddScoped<IDeviceRepository, DeviceRepository>();
+            services.AddScoped<IDeviceTypeRepository, DeviceTypeRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddDbContext<DataContext>(x => x.UseSqlServer(Configuration.GetConnectionString("sql"), b => b.MigrationsAssembly("ITManagement.Api")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
