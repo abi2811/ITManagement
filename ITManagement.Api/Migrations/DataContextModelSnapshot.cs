@@ -19,12 +19,90 @@ namespace ITManagement.Api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("ITManagement.Core.Model.Client", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedAt");
+
+                    b.Property<Guid?>("DepartamentId");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
+
+                    b.Property<DateTime>("UpdatedAt");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DepartamentId");
+
+                    b.ToTable("Clients");
+                });
+
+            modelBuilder.Entity("ITManagement.Core.Model.Departament", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Departaments");
+                });
+
+            modelBuilder.Entity("ITManagement.Core.Model.Device", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid?>("ClientId");
+
+                    b.Property<DateTime>("CreatedAt");
+
+                    b.Property<string>("InternalNumber");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("SerialNumber");
+
+                    b.Property<DateTime>("UpdatedAt");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.ToTable("Devices");
+                });
+
+            modelBuilder.Entity("ITManagement.Core.Model.DeviceEvent", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedAt");
+
+                    b.Property<Guid?>("DeviceId");
+
+                    b.Property<string>("EventText");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DeviceId");
+
+                    b.ToTable("DeviceEvents");
+                });
+
             modelBuilder.Entity("ITManagement.Core.Model.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Email");
+
+                    b.Property<string>("Hash");
 
                     b.Property<string>("Password");
 
@@ -35,6 +113,27 @@ namespace ITManagement.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("ITManagement.Core.Model.Client", b =>
+                {
+                    b.HasOne("ITManagement.Core.Model.Departament", "Departament")
+                        .WithMany()
+                        .HasForeignKey("DepartamentId");
+                });
+
+            modelBuilder.Entity("ITManagement.Core.Model.Device", b =>
+                {
+                    b.HasOne("ITManagement.Core.Model.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId");
+                });
+
+            modelBuilder.Entity("ITManagement.Core.Model.DeviceEvent", b =>
+                {
+                    b.HasOne("ITManagement.Core.Model.Device", "Device")
+                        .WithMany("DeviceEvents")
+                        .HasForeignKey("DeviceId");
                 });
 #pragma warning restore 612, 618
         }

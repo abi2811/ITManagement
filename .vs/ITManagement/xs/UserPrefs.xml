@@ -1,0 +1,60 @@
+﻿<Properties StartupConfiguration="{BA303264-88CB-4E2C-9F65-EEE411B987DE}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="ITManagement.Core/Repository/IUserRepository.cs">
+    <Files>
+      <File FileName="ITManagement.Api/Controllers/UsersController.cs" Line="32" Column="60" />
+      <File FileName="ITManagement.Api/Controllers/ClientsController.cs" Line="36" Column="1" />
+      <File FileName="ITManagement.Core/Model/User.cs" Line="61" Column="6" />
+      <File FileName="ITManagement.Infrastructure/Service/IUserService.cs" Line="16" Column="2" />
+      <File FileName="ITManagement.Infrastructure/Service/UserService.cs" Line="38" Column="13" />
+      <File FileName="ITManagement.Infrastructure/Data/DataContext.cs" Line="18" Column="2" />
+      <File FileName="ITManagement.Infrastructure/Mappers/AutoMapperConfig.cs" Line="18" Column="1" />
+      <File FileName="ITManagement.Infrastructure/Repository/UserRepository.cs" Line="17" Column="10" />
+      <File FileName="ITManagement.Infrastructure/Repository/DeviceRepository.cs" Line="18" Column="32" />
+      <File FileName="ITManagement.Infrastructure/Repository/DepartamentRepository.cs" Line="20" Column="10" />
+      <File FileName="ITManagement.Core/Repository/IUserRepository.cs" Line="7" Column="37" />
+      <File FileName="ITManagement.Core/Repository/IDeviceRepository.cs" Line="8" Column="39" />
+      <File FileName="ITManagement.Core/Repository/IClientRepository.cs" Line="9" Column="36" />
+      <File FileName="ITManagement.Core/Repository/IDepartamentRepository.cs" Line="8" Column="44" />
+      <File FileName="ITManagement.Infrastructure/Service/ClientService.cs" Line="43" Column="61" />
+      <File FileName="ITManagement.Infrastructure/Service/DepartamentService.cs" Line="33" Column="61" />
+      <File FileName="ITManagement.Infrastructure/Service/DeviceService.cs" Line="8" Column="1" />
+      <File FileName="ITManagement.Core/Model/Client.cs" Line="27" Column="2" />
+      <File FileName="ITManagement.Infrastructure/Repository/ClientRepository.cs" Line="19" Column="9" />
+      <File FileName="ITManagement.Core/Model/DeviceEvent.cs" Line="1" Column="1" />
+      <File FileName="ITManagement.Core/Model/Device.cs" Line="32" Column="10" />
+      <File FileName="ITManagement.Api/Controllers/DevicesController.cs" Line="10" Column="5" />
+      <File FileName="ITManagement.Infrastructure/Service/IDeviceService.cs" Line="21" Column="1" />
+      <File FileName="ITManagement.Api/Controllers/DepartamentsController.cs" Line="36" Column="6" />
+      <File FileName="ITManagement.Infrastructure/Commands/ICommand.cs" Line="1" Column="1" />
+      <File FileName="ITManagement.Infrastructure/Commands/Device/CreateDevice.cs" Line="12" Column="1" />
+      <File FileName="ITManagement.Core/Model/Departament.cs" Line="16" Column="2" />
+      <File FileName="ITManagement.Infrastructure/Commands/User/CreateUser.cs" Line="11" Column="1" />
+      <File FileName="ITManagement.Infrastructure/Commands/Client/CreateClient.cs" Line="11" Column="2" />
+      <File FileName="ITManagement.Infrastructure/Service/IClientService.cs" Line="1" Column="1" />
+      <File FileName="ITManagement.Infrastructure/Commands/Departament/CreateDepartament.cs" Line="4" Column="46" />
+      <File FileName="ITManagement.Infrastructure/Service/IDepartamentService.cs" Line="1" Column="1" />
+      <File FileName="ITManagement.Infrastructure/Commands/Client/EmailClient.cs" Line="9" Column="1" />
+      <File FileName="ITManagement.Infrastructure/Commands/Device/ChangeDeviceClient.cs" Line="10" Column="1" />
+      <File FileName="ITManagement.Infrastructure/Commands/Device/ChangeDeviceInternalNumber.cs" Line="4" Column="44" />
+      <File FileName="ITManagement.Infrastructure/Commands/Device/ChangeDeviceSerialNumber.cs" Line="4" Column="42" />
+      <File FileName="ITManagement.Infrastructure/Commands/Device/ChangeDeviceName.cs" Line="4" Column="34" />
+      <File FileName="ITManagement.Infrastructure/Commands/Client/ChangeClientEmail.cs" Line="4" Column="35" />
+      <File FileName="ITManagement.Infrastructure/Commands/User/ChangeUserEmail.cs" Line="10" Column="1" />
+      <File FileName="ITManagement.Infrastructure/Commands/User/ChangeUserPassword.cs" Line="10" Column="1" />
+      <File FileName="ITManagement.Core/Model/DeviceType.cs" Line="20" Column="1" />
+      <File FileName="ITManagement.Core/Repository/IDeviceTypeRepository.cs" Line="9" Column="43" />
+      <File FileName="ITManagement.Infrastructure/Repository/DeviceTypeRepository.cs" Line="19" Column="9" />
+      <File FileName="ITManagement.Infrastructure/Service/IDeviceTypeService.cs" Line="1" Column="1" />
+      <File FileName="ITManagement.Infrastructure/Commands/DeviceType/CreateDeviceType.cs" Line="9" Column="1" />
+      <File FileName="ITManagement.Infrastructure/Service/DeviceTypeService.cs" Line="1" Column="1" />
+      <File FileName="ITManagement.Api/Controllers/DeviceTypesController.cs" Line="36" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.ITManagement.Api PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

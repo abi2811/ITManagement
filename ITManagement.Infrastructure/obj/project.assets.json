@@ -625,7 +625,7 @@
   },
   "libraries": {
     "AutoMapper/8.0.0": {
-      "sha512": "px8ZMtIq84dxciB29V+ZYOtsRLZP4JlflDDMW13LyeRdwsnIInzlcSHSxpWmVD6U3bbOl2FeLlgomnVtm0jvXw==",
+      "sha512": "kcbje0Y71XkvzPn8k6OROZGOn2SKaWimon3Bu1WUTVoV5GTJVym+k+zQuKApyyFVRfk7bisumj/qUX4xIIXS+Q==",
       "type": "package",
       "path": "automapper/8.0.0",
       "files": [
@@ -2722,13 +2722,13 @@
       "projectName": "ITManagement.Infrastructure",
       "projectPath": "/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Infrastructure/ITManagement.Infrastructure.csproj",
       "packagesPath": "/Users/adrian.staszewski/.nuget/packages/",
-      "outputPath": "/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Infrastructure/obj/",
+      "outputPath": "/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Infrastructure/obj",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/adrian.staszewski/.nuget/NuGet/NuGet.Config"
+        "/Users/adrian.staszewski/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.0"
@@ -2756,16 +2756,16 @@
         "dependencies": {
           "AutoMapper": {
             "target": "Package",
-            "version": "[8.0.0, )"
+            "version": "8.0.0"
           },
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
-            "version": "[2.2.0, )"
+            "version": "2.2.0"
           },
           "NETStandard.Library": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[2.0.3, )",
+            "version": "2.0.3",
             "autoReferenced": true
           }
         },

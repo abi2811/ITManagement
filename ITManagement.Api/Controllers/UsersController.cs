@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ITManagement.Core.Model;
+﻿using System.Threading.Tasks;
+using ITManagement.Infrastructure.Commands.User;
 using ITManagement.Infrastructure.Service;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,7 +7,7 @@ namespace ITManagement.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UsersController : Controller
     {
         private readonly IUserService _service;
 
@@ -21,16 +18,18 @@ namespace ITManagement.Api.Controllers
 
         [HttpGet("{email}")]
         public async Task<IActionResult> Get(string email)
-        {
-            var user = await _service.GetAsync(email);
-            return Ok(user);
-        }
+            => Ok(await _service.GetAsync(email));
 
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody]User request)
+
+        [HttpGet]
+        public async Task<IActionResult> Get()
+            => Ok(await _service.GetAsync());
+
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody]CreateUser request)
         {
             await _service.AddAsync(request);
-            return StatusCode(204);
+            return Created($"users/{request.Email}", null);
         }
     }
 }
