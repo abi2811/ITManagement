@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using ITManagement.Core.Model;
 using ITManagement.Core.Repository;
 using ITManagement.Infrastructure.Commands.Client;
 using ITManagement.Infrastructure.Commands.Device;
+using ITManagement.Infrastructure.Commands.DeviceEvent;
+using ITManagement.Infrastructure.DTO;
 
 namespace ITManagement.Infrastructure.Service
 {
@@ -13,14 +16,20 @@ namespace ITManagement.Infrastructure.Service
         private readonly IDeviceRepository _deviceRepository;
         private readonly IClientRepository _clientRepository;
         private readonly IDeviceTypeRepository _deviceTypeRepository;
+        private readonly IDeviceEventRepository _deviceEventRepository;
+        private readonly IMapper _mapper;
 
         public DeviceService(IDeviceRepository deviceRepository, 
                              IClientRepository clientRepository,
-                             IDeviceTypeRepository deviceTypeRepository)
+                             IDeviceTypeRepository deviceTypeRepository,
+                             IDeviceEventRepository deviceEventRepository,
+                             IMapper mapper)
         {
             _deviceRepository = deviceRepository;
             _clientRepository = clientRepository;
             _deviceTypeRepository = deviceTypeRepository;
+            _deviceEventRepository = deviceEventRepository;
+            _mapper = mapper;
         }
 
         public async Task CreateAsync(CreateDevice createDevice)
@@ -39,39 +48,44 @@ namespace ITManagement.Infrastructure.Service
             if (deviceType == null)
                 throw new Exception("Device type does not exists.");
 
-            if (_deviceRepository.GetAsync(createDevice.InternalNumber.ToUpper()) != null)
+            var device = await _deviceRepository.GetAsync(createDevice.InternalNumber.ToUpper());
+
+            if (device!= null)
                 throw new Exception("Device with Internal number " +
                                     $"{createDevice.InternalNumber.ToUpper()} " +
                                     "already exists.");
+            
+            device = await _deviceRepository.GetDeviceAboutSerialNumber(createDevice.SerialNumber.ToUpper());
 
-            if (_deviceRepository.GetDeviceAboutSerialNumber(createDevice.SerialNumber.ToUpper()) != null)
+            if (device != null)
                 throw new Exception("Device with Serial number " +
                                     $"{createDevice.SerialNumber.ToUpper()}" +
                                     "already exists.");
 
-            var device = new Device(createDevice.Name.ToUpper(),
-                                    createDevice.InternalNumber.ToUpper(), 
-                                    createDevice.SerialNumber.ToUpper(),
-                                    deviceType);
+            device = new Device(createDevice.Name,
+                                createDevice.InternalNumber,
+                                createDevice.SerialNumber,
+                                deviceType);
 
             await _deviceRepository.AddAsync(device);
+            await _deviceEventRepository.AddAsync(new DeviceEvent(device, $"{DateTime.UtcNow} - Created device."));
         }
 
-        public async Task<Device> GetAsync(string internalNumber)
+        public async Task<DeviceDTO> GetAsync(string internalNumber)
         {
-            var device = await _deviceRepository.GetAsync(internalNumber);
+            var device = await _deviceRepository.GetAsync(internalNumber.ToUpper());
 
-            return device;
+            return _mapper.Map<Device, DeviceDTO>(device);
         }
 
-        public async Task<IEnumerable<Device>> GetAsync()
+        public async Task<IEnumerable<DeviceDTO>> GetAsync()
         {
             var devices = await _deviceRepository.GetAsync();
 
-            return devices;
+            return _mapper.Map<IEnumerable<Device>, IEnumerable<DeviceDTO>>(devices);
         }
 
-        public async Task<IEnumerable<Device>> GetUserDevicesAsync(EmailClient emailClient)
+        public async Task<IEnumerable<DeviceDTO>> GetUserDevicesAsync(EmailClient emailClient)
         {
             if (string.IsNullOrWhiteSpace(emailClient.Email))
             {
@@ -87,7 +101,7 @@ namespace ITManagement.Infrastructure.Service
 
             var devices = await _deviceRepository.GetDevicesAboutEmailClient(client);
 
-            return devices;
+            return _mapper.Map<IEnumerable<Device>, IEnumerable<DeviceDTO>>(devices);
         }
 
         public async Task ChangeClientAsync(ChangeDeviceClient changeClient)
@@ -98,13 +112,21 @@ namespace ITManagement.Infrastructure.Service
                 return;
 
             var client = await _clientRepository.GetAsync(changeClient.EmailClient.ToUpper());
-            var device = await GetAsync(changeClient.InternalNumber.ToUpper());
+            var device = await _deviceRepository.GetAsync(changeClient.InternalNumber.ToUpper());
 
             if (device == null)
                 return;
 
+            var oldClient = "null";
+
+            if(device.Client != null)
+                 oldClient = device.Client.Email;
+
             device.SetClient(client);
+
             await _deviceRepository.UpdateAsync(device);
+            await _deviceEventRepository.AddAsync(new DeviceEvent(device, $"{DateTime.UtcNow} - Changed " +
+                            $"device client from {oldClient} to {device.Client.Email}."));
         }
 
         public async Task ChangeInternalNumberAsync(ChangeDeviceInternalNumber changeInternalNumber)
@@ -115,14 +137,18 @@ namespace ITManagement.Infrastructure.Service
             if (string.IsNullOrWhiteSpace(changeInternalNumber.NewInternalNumber))
                 return;
 
-            var device = await GetAsync(changeInternalNumber.InternalNumber.ToUpper());
+            var device = await _deviceRepository.GetAsync(changeInternalNumber.InternalNumber.ToUpper());
 
             if (device == null)
                 return;
 
-            device.SetInternalNumber(changeInternalNumber.NewInternalNumber.ToUpper());
+            var oldInternalNumber = device.InternalNumber;
+
+            device.SetInternalNumber(changeInternalNumber.NewInternalNumber);
 
             await _deviceRepository.UpdateAsync(device);
+            await _deviceEventRepository.AddAsync(new DeviceEvent(device, $"{DateTime.UtcNow} - Changed " +
+                            $"device internal number from {oldInternalNumber} to {device.InternalNumber}."));
         }
 
         public async Task ChangeNameAsync(ChangeDeviceName changeName)
@@ -132,13 +158,17 @@ namespace ITManagement.Infrastructure.Service
             if (string.IsNullOrWhiteSpace(changeName.NewName))
                 return;
 
-            var device = await GetAsync(changeName.InternalNumber.ToUpper());
+            var device = await _deviceRepository.GetAsync(changeName.InternalNumber.ToUpper());
+            var oldName = device.Name;
 
             if (device == null)
                 return;
 
-            device.SetName(changeName.NewName.ToUpper());
+            device.SetName(changeName.NewName);
+
             await _deviceRepository.UpdateAsync(device);
+            await _deviceEventRepository.AddAsync(new DeviceEvent(device, $"{DateTime.UtcNow} - Changed " +
+                            $"device internal number from {oldName} to {device.Name}."));
         }
 
         public async Task ChangeSerialNumberAsync(ChangeDeviceSerialNumber changeSerialNumber)
@@ -148,13 +178,17 @@ namespace ITManagement.Infrastructure.Service
             if (string.IsNullOrWhiteSpace(changeSerialNumber.NewSerialNumber))
                 return;
 
-            var device = await GetAsync(changeSerialNumber.InternalNumber.ToUpper());
+            var device = await _deviceRepository.GetAsync(changeSerialNumber.InternalNumber.ToUpper());
+            var oldSerialNumber = device.SerialNumber;
 
             if (device == null)
                 return;
 
-            device.SetSerialNumber(changeSerialNumber.NewSerialNumber.ToUpper());
+            device.SetSerialNumber(changeSerialNumber.NewSerialNumber);
+
             await _deviceRepository.UpdateAsync(device);
+            await _deviceEventRepository.AddAsync(new DeviceEvent(device, $"{DateTime.UtcNow} - Changed " +
+                            $"device internal number from {oldSerialNumber} to {device.SerialNumber}."));
         }
     }
 }

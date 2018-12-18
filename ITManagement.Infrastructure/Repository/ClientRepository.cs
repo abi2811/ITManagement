@@ -26,14 +26,17 @@ namespace ITManagement.Infrastructure.Repository
         public async Task<Client> GetAsync(string email)
         {
             var client = await _context.Clients
-                   .FirstOrDefaultAsync(x => x.Email == email);
+                    .Include(c => c.Departament)
+                    .FirstOrDefaultAsync(x => x.Email == email);
 
             return client;
         }
 
         public async Task<IEnumerable<Client>> GetAsync()
         {
-            var clients = await _context.Clients.ToListAsync();
+            var clients = await _context.Clients
+                    .Include(c => c.Departament)
+                    .ToListAsync();
             return clients;
         }
     }

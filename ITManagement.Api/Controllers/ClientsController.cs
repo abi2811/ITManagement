@@ -23,7 +23,7 @@ namespace ITManagement.Api.Controllers
 
         [HttpGet("{email}")]
         public async Task<IActionResult> Get(string email)
-        => Ok(await _service.GetAsync(email));
+            => Ok(await _service.GetAsync(email));
 
         [HttpPut]
         public async Task<IActionResult> Put([FromBody]CreateClient request)

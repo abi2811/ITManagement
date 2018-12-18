@@ -10,7 +10,7 @@ namespace ITManagement.Core.Model
         public Departament(string name)
         {
             Id = Guid.NewGuid();
-            Name = name;
+            Name = name.ToUpper();
         }
     }
 }

@@ -1,22 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <ProjectReference Include="..\ITManagement.Core\ITManagement.Core.csproj" />
+    <ProjectReference Include="..\ITManagement.Core\ITManagement.Core.csproj"/>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="8.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="AutoMapper" Version="8.0.0"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0"/>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0"/>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Mappers\" />
-    <Folder Include="Commands\" />
-    <Folder Include="Commands\Device\" />
-    <Folder Include="Commands\User\" />
-    <Folder Include="Commands\Client\" />
-    <Folder Include="Commands\Departament\" />
-    <Folder Include="Commands\DeviceType\" />
+    <Folder Include="Mappers\"/>
+    <Folder Include="Commands\"/>
+    <Folder Include="Commands\Device\"/>
+    <Folder Include="Commands\User\"/>
+    <Folder Include="Commands\Client\"/>
+    <Folder Include="Commands\Departament\"/>
+    <Folder Include="Commands\DeviceType\"/>
   </ItemGroup>
   <ItemGroup>
-    <Compile Remove="DTO\ClientDTO.cs" />
+    <Compile Remove="DTO\ClientDTO.cs"/>
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>

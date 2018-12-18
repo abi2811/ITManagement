@@ -189,13 +189,13 @@
       "projectName": "ITManagement.Core",
       "projectPath": "/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Core/ITManagement.Core.csproj",
       "packagesPath": "/Users/adrian.staszewski/.nuget/packages/",
-      "outputPath": "/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Core/obj",
+      "outputPath": "/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Core/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/adrian.staszewski/.config/NuGet/NuGet.Config"
+        "/Users/adrian.staszewski/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.0"
@@ -220,7 +220,7 @@
           "NETStandard.Library": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "2.0.3",
+            "version": "[2.0.3, )",
             "autoReferenced": true
           }
         },

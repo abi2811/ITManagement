@@ -20,15 +20,11 @@ namespace ITManagement.Core.Model
         public Device(string name, string internalNumber, string serialNumber, DeviceType deviceType)
         {
             Id = Guid.NewGuid();
-            Name = name;
-            InternalNumber = internalNumber;
-            SerialNumber = serialNumber;
+            Name = name.ToUpper();
+            InternalNumber = internalNumber.ToUpper();
+            SerialNumber = serialNumber.ToUpper();
             DeviceType = deviceType;
             CreatedAt = DateTime.UtcNow;
-            DeviceEvents = new HashSet<DeviceEvent>
-            {
-                new DeviceEvent(this, $"Created device.")
-            };
         }
 
         public void SetClient(Client client)
@@ -51,7 +47,7 @@ namespace ITManagement.Core.Model
             if (InternalNumber == newInternalNumber)
                 throw new Exception("Device internal number already exists.");
 
-            InternalNumber = newInternalNumber;
+            InternalNumber = newInternalNumber.ToUpper();
             UpdatedAt = DateTime.UtcNow;
         }
 
@@ -63,7 +59,7 @@ namespace ITManagement.Core.Model
             if (Name == newName)
                 throw new Exception("Device name already exists.");
 
-            Name = newName;
+            Name = newName.ToUpper();
             UpdatedAt = DateTime.UtcNow;
         }
 
@@ -75,10 +71,8 @@ namespace ITManagement.Core.Model
             if (SerialNumber == newSerialNumber)
                 throw new Exception("Device serial number already exists.");
 
-            SerialNumber = newSerialNumber;
+            SerialNumber = newSerialNumber.ToUpper();
             UpdatedAt = DateTime.UtcNow;
         }
-
-
     }
 }

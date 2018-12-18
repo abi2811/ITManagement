@@ -18,8 +18,8 @@ namespace ITManagement.Core.Model
         public User(string username, string email, string password, string salt, string hash)
         {
             Id = Guid.NewGuid();
-            Username = username;
-            Email = email;
+            Username = username.ToUpper();
+            Email = email.ToUpper();
             Password = password;
             Salt = salt;
             Hash = hash;
@@ -34,7 +34,7 @@ namespace ITManagement.Core.Model
             if (Email == newEmail)
                 throw new Exception("User email already exists.");
 
-            Email = newEmail;
+            Email = newEmail.ToUpper();
             UpdatedAt = DateTime.UtcNow;
         }
 

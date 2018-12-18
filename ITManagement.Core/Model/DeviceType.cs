@@ -12,7 +12,7 @@ namespace ITManagement.Core.Model
         public DeviceType(string name)
         {
             Id = Guid.NewGuid();
-            Name = name;
+            Name = name.ToUpper();
             CreatedAt = DateTime.UtcNow;
         }
     }

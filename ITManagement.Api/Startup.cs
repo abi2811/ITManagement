@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using ITManagement.Api.Repository;
 using ITManagement.Core.Repository;
 using ITManagement.Infrastructure.Data;
+using ITManagement.Infrastructure.Mappers;
 using ITManagement.Infrastructure.Repository;
 using ITManagement.Infrastructure.Service;
 using Microsoft.AspNetCore.Builder;
@@ -41,8 +43,10 @@ namespace ITManagement.Api
             services.AddScoped<IDeviceRepository, DeviceRepository>();
             services.AddScoped<IDeviceTypeRepository, DeviceTypeRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IDeviceEventService, DeviceEventService>();
+            services.AddScoped<IDeviceEventRepository, DeviceEventRepository>();
             services.AddDbContext<DataContext>(x => x.UseSqlServer(Configuration.GetConnectionString("sql"), b => b.MigrationsAssembly("ITManagement.Api")));
-
+            services.AddAutoMapper();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

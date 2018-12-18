@@ -18,21 +18,19 @@ namespace ITManagement.Infrastructure.Service
 
         public async Task AddAsync(CreateDepartament createDepartament)
         {
-            var departamentName = createDepartament.Name.ToUpper();
-
-            if (string.IsNullOrWhiteSpace(departamentName))
+            if (string.IsNullOrWhiteSpace(createDepartament.Name))
                 return;
 
-            if (await _repository.GetAsync(departamentName) != null)
-                throw new Exception($"Departament {departamentName} is already exists.");
+            if (await _repository.GetAsync(createDepartament.Name.ToUpper()) != null)
+                throw new Exception($"Departament is already exists.");
 
-            var departament = new Departament(departamentName);
+            var departament = new Departament(createDepartament.Name);
             await _repository.AddAsync(departament);
         }
 
         public async Task<Departament> GetAsync(string name)
         {
-            var departament = await _repository.GetAsync(name);
+            var departament = await _repository.GetAsync(name.ToUpper());
             return departament;
         }
 

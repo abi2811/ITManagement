@@ -27,14 +27,19 @@ namespace ITManagement.Infrastructure.Repository
         public async Task<Device> GetAsync(string internalnumber)
         {
             var device = await _context.Devices
-                .FirstOrDefaultAsync(x => x.InternalNumber == internalnumber);
+                .Include(d => d.Client)
+                .FirstOrDefaultAsync(x => x.InternalNumber == internalnumber.ToUpper());
 
             return device;
         }
 
         public async Task<IEnumerable<Device>> GetAsync()
         {
-            var devices = await _context.Devices.ToListAsync();
+            var devices = await _context.Devices
+                .Include(c => c.Client)
+                .Include(t => t.DeviceType)
+                .Include(e => e.DeviceEvents)
+                .ToListAsync();
 
             return devices;
         }

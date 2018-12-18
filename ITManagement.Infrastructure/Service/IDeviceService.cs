@@ -3,14 +3,15 @@ using System.Threading.Tasks;
 using ITManagement.Core.Model;
 using ITManagement.Infrastructure.Commands.Client;
 using ITManagement.Infrastructure.Commands.Device;
+using ITManagement.Infrastructure.DTO;
 
 namespace ITManagement.Infrastructure.Service
 {
     public interface IDeviceService
     {
-        Task<Device> GetAsync(string internalNumber);
-        Task<IEnumerable<Device>> GetUserDevicesAsync(EmailClient emailClient);
-        Task<IEnumerable<Device>> GetAsync();
+        Task<DeviceDTO> GetAsync(string internalNumber);
+        Task<IEnumerable<DeviceDTO>> GetUserDevicesAsync(EmailClient emailClient);
+        Task<IEnumerable<DeviceDTO>> GetAsync();
         Task CreateAsync(CreateDevice createDevice);
         Task ChangeClientAsync(ChangeDeviceClient changeClient);
         Task ChangeInternalNumberAsync(ChangeDeviceInternalNumber changeInternalNumber);

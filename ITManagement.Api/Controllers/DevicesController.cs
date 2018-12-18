@@ -19,14 +19,14 @@ namespace ITManagement.Api.Controllers
         }
 
         [HttpGet("{internalNumber}")]
-        public async Task<IActionResult> Get(string intenalNumber)
-            => Ok(await _service.GetAsync(intenalNumber));
+        public async Task<IActionResult> Get(string internalNumber)
+            => Ok(await _service.GetAsync(internalNumber));
 
         [HttpGet]
         public async Task<IActionResult> Get()
             => Ok(await _service.GetAsync());
 
-        [HttpGet]
+        [HttpGet("client")]
         public async Task<IActionResult> Get([FromBody]EmailClient request)
             => Ok(await _service.GetUserDevicesAsync(request));
 

@@ -15,7 +15,7 @@ namespace ITManagement.Core.Model
         {
             Id = Guid.NewGuid();
             Device = device;
-            EventText = eventText;
+            EventText = eventText.ToUpper();
             CreatedAt = DateTime.UtcNow;
         }
     }

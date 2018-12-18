@@ -25,14 +25,14 @@ namespace ITManagement.Infrastructure.Service
             if (deviceType != null)
                 return;
 
-            var newDeviceType = new DeviceType(createDeviceType.Name.ToUpper());
+            var newDeviceType = new DeviceType(createDeviceType.Name);
 
             await _deviceTypeRepository.AddAsync(newDeviceType);
         }
 
         public async Task<DeviceType> GetAsync(string name)
         {
-            var deviceType = await _deviceTypeRepository.GetAsync(name);
+            var deviceType = await _deviceTypeRepository.GetAsync(name.ToUpper());
             return deviceType;
         }
 

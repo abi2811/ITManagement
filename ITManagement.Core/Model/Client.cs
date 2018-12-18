@@ -17,9 +17,9 @@ namespace ITManagement.Core.Model
         public Client(string firstname, string lastname, string email, Departament departament)
         {
             Id = Guid.NewGuid();
-            FirstName = firstname;
-            LastName = lastname;
-            Email = email;
+            FirstName = firstname.ToUpper();
+            LastName = lastname.ToUpper();
+            Email = email.ToUpper();
             Departament = departament;
             CreatedAt = DateTime.UtcNow;
         }
