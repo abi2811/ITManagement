@@ -39,6 +39,13 @@ namespace ITManagement.Core.Model
             UpdatedAt = DateTime.UtcNow;
         }
 
+        public void SetClient()
+        {
+            if(Client == null)
+                return;
+            Client = null;
+        }
+
         public void SetInternalNumber(string newInternalNumber)
         {
             if (string.IsNullOrWhiteSpace(newInternalNumber))

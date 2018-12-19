@@ -190,5 +190,31 @@ namespace ITManagement.Infrastructure.Service
             await _deviceEventRepository.AddAsync(new DeviceEvent(device, $"{DateTime.UtcNow} - Changed " +
                             $"device internal number from {oldSerialNumber} to {device.SerialNumber}."));
         }
+
+        public async Task ReturnDeviceFromClient(ReturnDeviceFromClient returnDeviceFromClient)
+        {
+            if(string.IsNullOrWhiteSpace(returnDeviceFromClient.InternalNumber))
+                return;
+            if(string.IsNullOrWhiteSpace(returnDeviceFromClient.ClientEmail))
+                return;
+            
+            var device = await _deviceRepository.GetAsync(returnDeviceFromClient.InternalNumber.ToUpper());
+
+            if (device == null)
+                throw new Exception("Device does not exists.");
+            
+            var client = await _clientRepository.GetAsync(returnDeviceFromClient.ClientEmail.ToUpper());
+
+            if (client == null)
+                throw new Exception($"Client with email {returnDeviceFromClient.ClientEmail} does not exists.");
+            
+            if(device.Client != client)
+                throw new Exception($"Client with email {client.Email} not use device {device.InternalNumber}.");
+
+            device.SetClient();
+
+            await _deviceEventRepository.AddAsync(new DeviceEvent(device, $"{DateTime.UtcNow} - {client.Email} returned device to company."));
+            await _deviceRepository.UpdateAsync(device);
+        }
     }
 }

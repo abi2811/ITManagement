@@ -69,5 +69,13 @@ namespace ITManagement.Api.Controllers
 
             return NoContent();
         }
+
+        [HttpPost("returndevice")]
+        public async Task<IActionResult> Post([FromBody]ReturnDeviceFromClient request)
+        {
+            await _service.ReturnDeviceFromClient(request);
+
+            return NoContent();
+        }
     }
 }

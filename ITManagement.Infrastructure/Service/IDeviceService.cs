@@ -17,5 +17,6 @@ namespace ITManagement.Infrastructure.Service
         Task ChangeInternalNumberAsync(ChangeDeviceInternalNumber changeInternalNumber);
         Task ChangeSerialNumberAsync(ChangeDeviceSerialNumber changeSerialNumber);
         Task ChangeNameAsync(ChangeDeviceName changeName);
+        Task ReturnDeviceFromClient(ReturnDeviceFromClient returnDeviceFromClient);
     }
 }
