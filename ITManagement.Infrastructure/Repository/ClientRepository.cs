@@ -35,7 +35,7 @@ namespace ITManagement.Infrastructure.Repository
         public async Task<IEnumerable<Client>> GetAsync()
         {
             var clients = await _context.Clients
-                    .Include(c => c.Departament)
+                    .Include(d => d.Departament)
                     .ToListAsync();
             return clients;
         }

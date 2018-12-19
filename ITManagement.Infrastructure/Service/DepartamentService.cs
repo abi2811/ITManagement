@@ -1,19 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using ITManagement.Core.Model;
 using ITManagement.Core.Repository;
 using ITManagement.Infrastructure.Commands.Departament;
+using ITManagement.Infrastructure.DTO;
 
 namespace ITManagement.Infrastructure.Service
 {
     public class DepartamentService : IDepartamentService
     {
         private readonly IDepartamentRepository _repository;
+        private readonly IMapper _mapper;
 
-        public DepartamentService(IDepartamentRepository repository)
+        public DepartamentService(IDepartamentRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         public async Task AddAsync(CreateDepartament createDepartament)
@@ -28,16 +32,16 @@ namespace ITManagement.Infrastructure.Service
             await _repository.AddAsync(departament);
         }
 
-        public async Task<Departament> GetAsync(string name)
+        public async Task<DepartamentDTO> GetAsync(string name)
         {
             var departament = await _repository.GetAsync(name.ToUpper());
-            return departament;
+            return _mapper.Map<Departament, DepartamentDTO>(departament);
         }
 
-        public async Task<IEnumerable<Departament>> GetAsync()
+        public async Task<IEnumerable<DepartamentDTO>> GetAsync()
         {
             var departaments = await _repository.GetAsync();
-            return departaments;
+            return _mapper.Map<IEnumerable<Departament>,IEnumerable<DepartamentDTO>>(departaments);
         }
     }
 }

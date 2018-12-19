@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using ITManagement.Core.Model;
 using ITManagement.Core.Repository;
 using ITManagement.Infrastructure.Commands.Client;
+using ITManagement.Infrastructure.DTO;
 
 namespace ITManagement.Infrastructure.Service
 {
@@ -11,11 +13,13 @@ namespace ITManagement.Infrastructure.Service
     {
         private readonly IClientRepository _clientRepository;
         private readonly IDepartamentRepository _departamentRepository;
+        private readonly IMapper _mapper;
 
-        public ClientService(IClientRepository clientRepository, IDepartamentRepository departamentRepository)
+        public ClientService(IClientRepository clientRepository, IDepartamentRepository departamentRepository, IMapper mapper)
         {
             _clientRepository = clientRepository;
             _departamentRepository = departamentRepository;
+            _mapper = mapper;
         }
 
         public async Task AddAsync(CreateClient createClient)
@@ -48,16 +52,16 @@ namespace ITManagement.Infrastructure.Service
             await _clientRepository.AddAsync(client);
         }
 
-        public async Task<Client> GetAsync(string email)
+        public async Task<ClientDTO> GetAsync(string email)
         {
             var client = await _clientRepository.GetAsync(email.ToUpper());
-            return client;
+            return _mapper.Map<Client, ClientDTO>(client);
         }
 
-        public async Task<IEnumerable<Client>> GetAsync()
+        public async Task<IEnumerable<ClientDTO>> GetAsync()
         {
             var clients = await _clientRepository.GetAsync();
-            return clients;
+            return _mapper.Map<IEnumerable<Client>, IEnumerable<ClientDTO>>(clients);
         }
     }
 }

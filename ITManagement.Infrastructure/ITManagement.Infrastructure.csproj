@@ -16,9 +16,6 @@
     <Folder Include="Commands\Departament\"/>
     <Folder Include="Commands\DeviceType\"/>
   </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="DTO\ClientDTO.cs"/>
-  </ItemGroup>
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>

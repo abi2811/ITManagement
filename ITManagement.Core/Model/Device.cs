@@ -44,6 +44,7 @@ namespace ITManagement.Core.Model
             if(Client == null)
                 return;
             Client = null;
+            UpdatedAt = DateTime.UtcNow;
         }
 
         public void SetInternalNumber(string newInternalNumber)

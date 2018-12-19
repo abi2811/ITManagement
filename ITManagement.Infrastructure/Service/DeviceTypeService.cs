@@ -1,18 +1,22 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using ITManagement.Core.Model;
 using ITManagement.Core.Repository;
 using ITManagement.Infrastructure.Commands.DeviceType;
+using ITManagement.Infrastructure.DTO;
 
 namespace ITManagement.Infrastructure.Service
 {
     public class DeviceTypeService : IDeviceTypeService
     {
         private readonly IDeviceTypeRepository _deviceTypeRepository;
+        private readonly IMapper _mapper;
 
-        public DeviceTypeService(IDeviceTypeRepository deviceTypeRepository)
+        public DeviceTypeService(IDeviceTypeRepository deviceTypeRepository, IMapper mapper)
         {
             _deviceTypeRepository = deviceTypeRepository;
+            _mapper = mapper;
         }
 
         public async Task AddAsync(CreateDeviceType createDeviceType)
@@ -30,16 +34,16 @@ namespace ITManagement.Infrastructure.Service
             await _deviceTypeRepository.AddAsync(newDeviceType);
         }
 
-        public async Task<DeviceType> GetAsync(string name)
+        public async Task<DeviceTypeDTO> GetAsync(string name)
         {
             var deviceType = await _deviceTypeRepository.GetAsync(name.ToUpper());
-            return deviceType;
+            return _mapper.Map<DeviceType,DeviceTypeDTO>(deviceType);
         }
 
-        public async Task<IEnumerable<DeviceType>> GetAsync()
+        public async Task<IEnumerable<DeviceTypeDTO>> GetAsync()
         {
             var deviceTypes = await _deviceTypeRepository.GetAsync();
-            return deviceTypes;
+            return _mapper.Map<IEnumerable<DeviceType>,IEnumerable<DeviceTypeDTO>>(deviceTypes);
         }
     }
 }

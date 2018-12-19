@@ -13,6 +13,7 @@ namespace ITManagement.Infrastructure.Mappers
                 cfg.CreateMap<User, UserDTO>();
                 cfg.CreateMap<DeviceEvent, DeviceEventDTO>();
                 cfg.CreateMap<Device, DeviceDTO>();
+                cfg.CreateMap<Client, ClientDTO>();
             })
             .CreateMapper();
     }
