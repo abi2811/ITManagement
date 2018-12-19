@@ -2,21 +2,21 @@
 
 ### Plan
 
-[x] create application base with basic functions
+[ x ] create application base with basic functions
 
-[ ] add container IoC to code
+[   ] add container IoC to code
 
-[ ] add authorization module
+[   ] add authorization module
 
-[ ] add generating documents module
+[   ] add generating documents module
 
-[ ] create SPA with Angular
+[   ] create SPA with Angular
 
-[ ] deploy app to production server
+[   ] deploy app to production server
 
 
 ### What the project does?
-IT Management - an application that manages IT devices, for example: laptops, tablets, mobile phones.  
+IT Management - application that manages IT devices, for example: laptops, tablets, mobile phones.  
 
 Functions: 
 
