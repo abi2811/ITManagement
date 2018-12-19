@@ -22,16 +22,36 @@
 6. Run code
     dotnet run
 
-7. Test POST with postman
-    https://localhost:5001/api/users
+7. Available requests [current]:
 
-            {
-                "username": "user1",
-                "email": "user1@email.com",
-                "password": "secret",
-            }
+GET /api/users - get all user
+GET /api/users/user@email.com - get user by email
+PUT /api/users - add user, request with JSON body (firstname, lastname, email, departament)
+GET /api/departaments - get all departaments in company
+GET /api/departaments/'name' - get deparament by name
+PUT /api/departaments - add departament, request with JSON body (name)
+GET /api/deviceevents - get all device events
+GET /api/deviceevents/'internalNumber' - get events by device internal number
+GET /api/devicetypes - get all device types
+GET /api/devicetypes/'name' - get device type by name
+PUT /api/devicetypes - add device type, request with JSON body (name)
+GET /api/users - get all users
+GET /api/users/'email' - get user by email
+PUT /api/users - add user, request with JSON body (username, email, password)
+GET /api/devices - get all devices 
+GET /api/devices/'internalNumber' - get device by internal number
+GET /api/devices/client - get client devices, request with JSON body (email)
 
-8. Test GET with postman
-    https://localhost:5001/api/users/user1@email.com
+POST /api/devices/changeserialnumber - change serial number with JSON body (InternalNumber, NewSerialNumber)
 
-WORK!
+POST /api/devices/changename - change model device with JSON body (InternalNumber, NewName)
+
+POST /api/devices/changeinternalnumber - change internal number with JSON body (InternalNumber 'present internal number', NewInternalNumber)
+
+POST /api/devices/returndevice - mark device as available with JSON body (InternalNumber, ClientEmail)
+
+POST /api/devices/changeclient - change client with JSON body (Email 'client email', InternalNumber 'internal company device number')
+
+PUT /api/devices - add device, request with JSON body (Name 'ex. Model'], InternalNumber 'internal company device number',             SerialNumber 'device s/n' , DeviceType 'type name')
+
+
