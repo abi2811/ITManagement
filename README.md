@@ -1,5 +1,53 @@
 # ITManagementDemo with MS SQL Server Linux (Docker)
 
+### Plan
+
+[x] create application base with basic functions
+
+[ ] add container IoC to code
+
+[ ] add authorization module
+
+[ ] add generating documents module
+
+[ ] create SPA with Angular
+
+[ ] deploy app to production server
+
+
+### What the project does?
+IT Management - an application that manages IT devices, for example: laptops, tablets, mobile phones.  
+
+Functions: 
+
+* device base in the company, 
+
+* register of rented devices for employees, 
+
+* device history, 
+
+* generating documents for the transfer and receipt of devices, 
+
+* generating reports
+
+### Why the project is useful?
+I used the software for such devices management but I had to cancel because of the license prices.
+
+I decided to write the same software not only for myself. I think that it is necessary for the IT department to operate.
+
+The IT department will know:
+
+* how many devices are available
+
+* who has our devices
+
+* who had the devices before
+
+### How users can get started with the project?
+#### for tests
+
+Setup Docker Database and install dotnet core:
+
 1. Install docker from https://www.docker.com/get-started
 
 2. Check if the docker installation was successful?
@@ -14,15 +62,40 @@
 4. Create our container with MS SQL Server
     docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=secret1!' -p 1433:1433 --name sql1 -d microsoft/mssql-server-linux:latest
 
-5. After clone code 
-    cd ITManagement/Api
-    dotnet ef migrations add initial
+#### for production
+5. Install MS Sql database and create account sa with password 'secret1!'
+
+6. change address sql server in ITManagement.API/appsettings.json
+
+  "ConnectionStrings": {
+    "sql": "Server=YOUR_SQL_SERVER_ADDRESS;User Id=SA;Password=secret1!;Database=ITManagement"
+
+#### next:
+
+7. Clone my project
+
+8. After clone code you must go to the project folder to ITManagement/API
+
+9. Make database migrations
+    
+    dotnet ef migratons add InitialDB
+    
     dotnet ef database update
+    
+and next:
 
-6. Run code
+10. Run code
     dotnet run
+    
+### Where users can get help with your project?
 
-7. Available requests [current]:
+For help you, can write me message: adrian.staszewski28@gmail.com
+
+### Who maintains and contributes to the project?
+
+This is only my project. I learn programming in C#. I have hope that I will be commercial developer.
+
+### Available requests [current]:
 
 GET /api/users - get all user
 
