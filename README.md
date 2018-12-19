@@ -25,21 +25,37 @@
 7. Available requests [current]:
 
 GET /api/users - get all user
+
 GET /api/users/user@email.com - get user by email
+
 PUT /api/users - add user, request with JSON body (firstname, lastname, email, departament)
+
 GET /api/departaments - get all departaments in company
+
 GET /api/departaments/'name' - get deparament by name
+
 PUT /api/departaments - add departament, request with JSON body (name)
+
 GET /api/deviceevents - get all device events
+
 GET /api/deviceevents/'internalNumber' - get events by device internal number
+
 GET /api/devicetypes - get all device types
+
 GET /api/devicetypes/'name' - get device type by name
+
 PUT /api/devicetypes - add device type, request with JSON body (name)
+
 GET /api/users - get all users
+
 GET /api/users/'email' - get user by email
+
 PUT /api/users - add user, request with JSON body (username, email, password)
+
 GET /api/devices - get all devices 
+
 GET /api/devices/'internalNumber' - get device by internal number
+
 GET /api/devices/client - get client devices, request with JSON body (email)
 
 POST /api/devices/changeserialnumber - change serial number with JSON body (InternalNumber, NewSerialNumber)
