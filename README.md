@@ -1,4 +1,4 @@
-# ITManagementDemo with MS SQL Server Linux (Docker)
+# ITManagement [.NET CORE, MS SQL, DOCKER]
 
 ### Plan
 
