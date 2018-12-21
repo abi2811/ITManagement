@@ -6,7 +6,7 @@
 
 [   ] add container IoC to code
 
-[   ] add authorization module
+[ x ] add authorization module
 
 [   ] add generating documents module
 
@@ -102,6 +102,10 @@ GET /api/users - get all user
 GET /api/users/user@email.com - get user by email
 
 PUT /api/users - add user, request with JSON body (firstname, lastname, email, departament)
+
+POST /api/users/changepassword - change user password, request with JSON body (Email, OldPassword, NewPassword)
+
+POST /api/users/login - login to app, request with JSON body (email, password)
 
 GET /api/departaments - get all departaments in company
 
