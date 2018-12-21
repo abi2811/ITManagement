@@ -13,7 +13,10 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "6.0.0",
           "ITManagement.Core": "1.0.0",
           "Microsoft.EntityFrameworkCore": "2.2.0",
-          "NETStandard.Library": "2.0.3"
+          "NETStandard.Library": "2.0.3",
+          "Microsoft.Extensions.Identity.Core": "2.2.0.0",
+          "Microsoft.IdentityModel.Tokens": "5.3.0.0",
+          "System.IdentityModel.Tokens.Jwt": "5.3.0.0"
         },
         "runtime": {
           "ITManagement.Infrastructure.dll": {}
@@ -535,6 +538,30 @@
         "runtime": {
           "ITManagement.Core.dll": {}
         }
+      },
+      "Microsoft.Extensions.Identity.Core/2.2.0.0": {
+        "runtime": {
+          "Microsoft.Extensions.Identity.Core.dll": {
+            "assemblyVersion": "2.2.0.0",
+            "fileVersion": "2.2.0.18316"
+          }
+        }
+      },
+      "Microsoft.IdentityModel.Tokens/5.3.0.0": {
+        "runtime": {
+          "Microsoft.IdentityModel.Tokens.dll": {
+            "assemblyVersion": "5.3.0.0",
+            "fileVersion": "5.3.0.51005"
+          }
+        }
+      },
+      "System.IdentityModel.Tokens.Jwt/5.3.0.0": {
+        "runtime": {
+          "System.IdentityModel.Tokens.Jwt.dll": {
+            "assemblyVersion": "5.3.0.0",
+            "fileVersion": "5.3.0.51005"
+          }
+        }
       }
     }
   },
@@ -896,6 +923,21 @@
     },
     "ITManagement.Core/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Extensions.Identity.Core/2.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.IdentityModel.Tokens/5.3.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "System.IdentityModel.Tokens.Jwt/5.3.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

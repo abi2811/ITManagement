@@ -2,11 +2,13 @@ using System;
 using System.Threading.Tasks;
 using ITManagement.Infrastructure.Commands.DeviceEvent;
 using ITManagement.Infrastructure.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ITManagement.Api.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class DeviceEventsController : Controller
     {

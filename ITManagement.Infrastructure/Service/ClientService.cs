@@ -6,6 +6,7 @@ using ITManagement.Core.Model;
 using ITManagement.Core.Repository;
 using ITManagement.Infrastructure.Commands.Client;
 using ITManagement.Infrastructure.DTO;
+using ITManagement.Infrastructure.Extensions;
 
 namespace ITManagement.Infrastructure.Service
 {
@@ -24,16 +25,16 @@ namespace ITManagement.Infrastructure.Service
 
         public async Task AddAsync(CreateClient createClient)
         {
-            if (string.IsNullOrWhiteSpace(createClient.Firstname))
+            if (createClient.Firstname.Empty())
                 return;
 
-            if (string.IsNullOrWhiteSpace(createClient.Lastname))
+            if (createClient.Lastname.Empty())
                 return;
 
-            if (string.IsNullOrWhiteSpace(createClient.Email))
+            if (createClient.Email.Empty())
                 return;
 
-            if (string.IsNullOrWhiteSpace(createClient.Departament))
+            if (createClient.Departament.Empty())
                 return;
 
             var departament = await _departamentRepository.GetAsync(createClient.Departament.ToUpper());

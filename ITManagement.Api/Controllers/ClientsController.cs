@@ -2,11 +2,13 @@
 using ITManagement.Core.Model;
 using ITManagement.Infrastructure.Commands.Client;
 using ITManagement.Infrastructure.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ITManagement.Api.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class ClientsController : Controller
     {
@@ -16,7 +18,9 @@ namespace ITManagement.Api.Controllers
         {
             _service = service;
         }
-
+        /// <summary>
+        /// Get all clients.
+        /// </summary>
         [HttpGet]
         public async Task<IActionResult> Get()
             => Ok(await _service.GetAsync());

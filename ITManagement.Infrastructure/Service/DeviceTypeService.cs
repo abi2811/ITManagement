@@ -5,6 +5,7 @@ using ITManagement.Core.Model;
 using ITManagement.Core.Repository;
 using ITManagement.Infrastructure.Commands.DeviceType;
 using ITManagement.Infrastructure.DTO;
+using ITManagement.Infrastructure.Extensions;
 
 namespace ITManagement.Infrastructure.Service
 {
@@ -21,7 +22,7 @@ namespace ITManagement.Infrastructure.Service
 
         public async Task AddAsync(CreateDeviceType createDeviceType)
         {
-            if (string.IsNullOrWhiteSpace(createDeviceType.Name))
+            if (createDeviceType.Name.Empty())
                 return;
 
             var deviceType = await _deviceTypeRepository.GetAsync(createDeviceType.Name.ToUpper());

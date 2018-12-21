@@ -10,3 +10,11 @@
 /Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Infrastructure/obj/Debug/netstandard2.0/ITManagement.Infrastructure.csproj.CopyComplete
 /Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Infrastructure/obj/Debug/netstandard2.0/ITManagement.Infrastructure.dll
 /Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Infrastructure/obj/Debug/netstandard2.0/ITManagement.Infrastructure.pdb
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Infrastructure/bin/Debug/netstandard2.0/Microsoft.Extensions.Identity.Core.dll
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Infrastructure/bin/Debug/netstandard2.0/Microsoft.IdentityModel.Tokens.dll
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Infrastructure/bin/Debug/netstandard2.0/System.IdentityModel.Tokens.Jwt.dll
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Infrastructure/bin/Debug/netstandard2.0/System.IdentityModel.Tokens.Jwt.pdb
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Infrastructure/bin/Debug/netstandard2.0/System.IdentityModel.Tokens.Jwt.xml
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Infrastructure/bin/Debug/netstandard2.0/Microsoft.IdentityModel.Tokens.pdb
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Infrastructure/bin/Debug/netstandard2.0/Microsoft.IdentityModel.Tokens.xml
+/Users/adrian.staszewski/Programowanie/dotnet/ITManagement/ITManagement.Infrastructure/bin/Debug/netstandard2.0/Microsoft.Extensions.Identity.Core.xml

@@ -3,11 +3,13 @@ using System.Threading.Tasks;
 using ITManagement.Infrastructure.Commands.Client;
 using ITManagement.Infrastructure.Commands.Device;
 using ITManagement.Infrastructure.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ITManagement.Api.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class DevicesController : Controller
     {

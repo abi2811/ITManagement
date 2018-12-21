@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
 using ITManagement.Infrastructure.Commands.User;
+using ITManagement.Infrastructure.DTO;
 using ITManagement.Infrastructure.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ITManagement.Api.Controllers
@@ -17,11 +19,13 @@ namespace ITManagement.Api.Controllers
         }
 
         [HttpGet("{email}")]
+        [Authorize]
         public async Task<IActionResult> Get(string email)
             => Ok(await _service.GetAsync(email));
 
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Get()
             => Ok(await _service.GetAsync());
 
@@ -30,6 +34,21 @@ namespace ITManagement.Api.Controllers
         {
             await _service.AddAsync(request);
             return Created($"users/{request.Email}", null);
+        }
+
+        [HttpPost("changepassword")]
+        [Authorize]
+        public async Task<IActionResult> Post([FromBody]ChangeUserPassword request)
+        {
+            await _service.ChangePasswordAsync(request);
+            return NoContent();
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Post([FromBody]LoginUser request)
+        {
+            var token = await _service.Login(request);
+            return Ok(token);
         }
     }
 }

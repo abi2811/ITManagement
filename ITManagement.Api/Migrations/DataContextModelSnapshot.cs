@@ -124,8 +124,6 @@ namespace ITManagement.Api.Migrations
 
                     b.Property<string>("Email");
 
-                    b.Property<string>("Hash");
-
                     b.Property<string>("Password");
 
                     b.Property<string>("Salt");

@@ -1,23 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
 using AutoMapper;
 using ITManagement.Api.Repository;
 using ITManagement.Core.Repository;
 using ITManagement.Infrastructure.Data;
-using ITManagement.Infrastructure.Mappers;
 using ITManagement.Infrastructure.Repository;
 using ITManagement.Infrastructure.Service;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace ITManagement.Api
@@ -46,9 +44,44 @@ namespace ITManagement.Api
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IDeviceEventService, DeviceEventService>();
             services.AddScoped<IDeviceEventRepository, DeviceEventRepository>();
+            services.AddScoped<IEncrypter, Encrypter>();
+            services.AddScoped<IJwtHandler, JwtHandler>();
+
+            // ===== Add Db Context ========
             services.AddDbContext<DataContext>(x => x.UseSqlServer(Configuration.GetConnectionString("sql"), b => b.MigrationsAssembly("ITManagement.Api")));
+            
+            // ===== Add Identity ========
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<DataContext>()
+                .AddDefaultTokenProviders();
+
+            // ===== Add jwt ========
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+
+            services
+            .AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(cfg =>
+            {
+                cfg.RequireHttpsMetadata = false;
+                    cfg.SaveToken = true;
+                    cfg.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidIssuer = Configuration["JwtIssuer"],
+                        ValidAudience = Configuration["JwtIssuer"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtKey"])),
+                        ClockSkew = TimeSpan.Zero // remove delay of token when expire
+                    };
+            });
+
             services.AddAutoMapper();
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
@@ -76,12 +109,14 @@ namespace ITManagement.Api
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "IT Manager v.0.1");
                 c.RoutePrefix = string.Empty;
             });
 
             app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseMvc();
+            
         }
     }
 }

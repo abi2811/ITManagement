@@ -6,6 +6,7 @@ using ITManagement.Core.Model;
 using ITManagement.Core.Repository;
 using ITManagement.Infrastructure.Commands.Departament;
 using ITManagement.Infrastructure.DTO;
+using ITManagement.Infrastructure.Extensions;
 
 namespace ITManagement.Infrastructure.Service
 {
@@ -22,7 +23,7 @@ namespace ITManagement.Infrastructure.Service
 
         public async Task AddAsync(CreateDepartament createDepartament)
         {
-            if (string.IsNullOrWhiteSpace(createDepartament.Name))
+            if (createDepartament.Name.Empty())
                 return;
 
             if (await _repository.GetAsync(createDepartament.Name.ToUpper()) != null)

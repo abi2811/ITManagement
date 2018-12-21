@@ -3,11 +3,13 @@ using System.Threading.Tasks;
 using ITManagement.Core.Model;
 using ITManagement.Infrastructure.Commands.Departament;
 using ITManagement.Infrastructure.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ITManagement.Api.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class DepartamentsController : Controller
     {

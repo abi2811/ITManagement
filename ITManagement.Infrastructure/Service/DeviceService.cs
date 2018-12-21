@@ -8,6 +8,7 @@ using ITManagement.Infrastructure.Commands.Client;
 using ITManagement.Infrastructure.Commands.Device;
 using ITManagement.Infrastructure.Commands.DeviceEvent;
 using ITManagement.Infrastructure.DTO;
+using ITManagement.Infrastructure.Extensions;
 
 namespace ITManagement.Infrastructure.Service
 {
@@ -34,13 +35,13 @@ namespace ITManagement.Infrastructure.Service
 
         public async Task CreateAsync(CreateDevice createDevice)
         {
-            if (string.IsNullOrWhiteSpace(createDevice.InternalNumber))
+            if (createDevice.InternalNumber.Empty())
                 return;
-            if (string.IsNullOrWhiteSpace(createDevice.Name))
+            if (createDevice.Name.Empty())
                 return;
-            if (string.IsNullOrWhiteSpace(createDevice.SerialNumber))
+            if (createDevice.SerialNumber.Empty())
                 return;
-            if (string.IsNullOrWhiteSpace(createDevice.DeviceType))
+            if (createDevice.DeviceType.Empty())
                 return;
 
             var deviceType = await _deviceTypeRepository.GetAsync(createDevice.DeviceType.ToUpper());
@@ -87,7 +88,7 @@ namespace ITManagement.Infrastructure.Service
 
         public async Task<IEnumerable<DeviceDTO>> GetUserDevicesAsync(EmailClient emailClient)
         {
-            if (string.IsNullOrWhiteSpace(emailClient.Email))
+            if (emailClient.Email.Empty())
             {
                 throw new ArgumentNullException();
             }
@@ -106,9 +107,9 @@ namespace ITManagement.Infrastructure.Service
 
         public async Task ChangeClientAsync(ChangeDeviceClient changeClient)
         {
-            if (string.IsNullOrWhiteSpace(changeClient.InternalNumber))
+            if (changeClient.InternalNumber.Empty())
                 return;
-            if (string.IsNullOrWhiteSpace(changeClient.EmailClient))
+            if (changeClient.EmailClient.Empty())
                 return;
 
             var client = await _clientRepository.GetAsync(changeClient.EmailClient.ToUpper());
@@ -131,10 +132,10 @@ namespace ITManagement.Infrastructure.Service
 
         public async Task ChangeInternalNumberAsync(ChangeDeviceInternalNumber changeInternalNumber)
         {
-            if (string.IsNullOrWhiteSpace(changeInternalNumber.InternalNumber))
+            if (changeInternalNumber.InternalNumber.Empty())
                 return;
 
-            if (string.IsNullOrWhiteSpace(changeInternalNumber.NewInternalNumber))
+            if (changeInternalNumber.NewInternalNumber.Empty())
                 return;
 
             var device = await _deviceRepository.GetAsync(changeInternalNumber.InternalNumber.ToUpper());
@@ -153,9 +154,9 @@ namespace ITManagement.Infrastructure.Service
 
         public async Task ChangeNameAsync(ChangeDeviceName changeName)
         {
-            if (string.IsNullOrWhiteSpace(changeName.InternalNumber))
+            if (changeName.InternalNumber.Empty())
                 return;
-            if (string.IsNullOrWhiteSpace(changeName.NewName))
+            if (changeName.NewName.Empty())
                 return;
 
             var device = await _deviceRepository.GetAsync(changeName.InternalNumber.ToUpper());
@@ -173,9 +174,9 @@ namespace ITManagement.Infrastructure.Service
 
         public async Task ChangeSerialNumberAsync(ChangeDeviceSerialNumber changeSerialNumber)
         {
-            if (string.IsNullOrWhiteSpace(changeSerialNumber.InternalNumber))
+            if (changeSerialNumber.InternalNumber.Empty())
                 return;
-            if (string.IsNullOrWhiteSpace(changeSerialNumber.NewSerialNumber))
+            if (changeSerialNumber.NewSerialNumber.Empty())
                 return;
 
             var device = await _deviceRepository.GetAsync(changeSerialNumber.InternalNumber.ToUpper());
@@ -193,9 +194,9 @@ namespace ITManagement.Infrastructure.Service
 
         public async Task ReturnDeviceFromClient(ReturnDeviceFromClient returnDeviceFromClient)
         {
-            if(string.IsNullOrWhiteSpace(returnDeviceFromClient.InternalNumber))
+            if(returnDeviceFromClient.InternalNumber.Empty())
                 return;
-            if(string.IsNullOrWhiteSpace(returnDeviceFromClient.ClientEmail))
+            if(returnDeviceFromClient.ClientEmail.Empty())
                 return;
             
             var device = await _deviceRepository.GetAsync(returnDeviceFromClient.InternalNumber.ToUpper());

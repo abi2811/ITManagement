@@ -6,6 +6,7 @@ using ITManagement.Core.Model;
 using ITManagement.Core.Repository;
 using ITManagement.Infrastructure.Commands.DeviceEvent;
 using ITManagement.Infrastructure.DTO;
+using ITManagement.Infrastructure.Extensions;
 
 namespace ITManagement.Infrastructure.Service
 {
@@ -23,9 +24,9 @@ namespace ITManagement.Infrastructure.Service
         }
         public async Task AddAsync(CreateDeviceEvent createDeviceEvent)
         {
-            if(string.IsNullOrWhiteSpace(createDeviceEvent.EventText))
+            if(createDeviceEvent.EventText.Empty())
                 return;
-            if(string.IsNullOrWhiteSpace(createDeviceEvent.InternalNumber))
+            if(createDeviceEvent.InternalNumber.Empty())
                 return;
 
             var device = await _deviceRepository.GetAsync(createDeviceEvent.InternalNumber.ToUpper());
@@ -39,7 +40,7 @@ namespace ITManagement.Infrastructure.Service
 
         public async Task<IEnumerable<DeviceEventDTO>> GetAsync(string internalNumber)
         {
-            if(string.IsNullOrWhiteSpace(internalNumber))
+            if(internalNumber.Empty())
                 throw new ArgumentNullException();
             
             var device = await _deviceRepository.GetAsync(internalNumber.ToUpper());

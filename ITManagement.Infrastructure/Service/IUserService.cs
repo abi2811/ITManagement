@@ -12,5 +12,6 @@ namespace ITManagement.Infrastructure.Service
         Task AddAsync(CreateUser createUser);
         Task ChangeEmailAsync(ChangeUserEmail changeUserEmail);
         Task ChangePasswordAsync(ChangeUserPassword changeUserPassword);
+        Task<JwtDTO> Login(LoginUser loginUser);
     }
 }
