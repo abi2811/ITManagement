@@ -59,16 +59,16 @@ Setup Docker Database and install dotnet core:
 3. Check correctly downloaded MS SQL Server from CLI:
     docker images
 
-4. Create our container with MS SQL Server
-    docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=secret1!' -p 1433:1433 --name sql1 -d microsoft/mssql-server-linux:latest
+4. Create our container with MS SQL Server with SA account and YOUR_PASSWORD
+    docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=YOUR_PASSWORD' -p 1433:1433 --name sql1 -d microsoft/mssql-server-linux:latest
 
 #### for production
-5. Install MS Sql database and create account sa with password 'secret1!'
+5. Install MS Sql database and create account sa with password YOUR_PASSWORD
 
 6. change address sql server in ITManagement.API/appsettings.json
 
   "ConnectionStrings": {
-    "sql": "Server=YOUR_SQL_SERVER_ADDRESS;User Id=SA;Password=secret1!;Database=ITManagement"
+    "sql": "Server=YOUR_SQL_SERVER_ADDRESS;User Id=SA;Password=YOUR_PASSWORD;Database=ITManagement"
 
 #### next:
 
